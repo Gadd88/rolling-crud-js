@@ -61,3 +61,14 @@ const mostrarProductos = () => {
         `
     })
 }
+
+//Eliminar Producto
+const eliminarProducto = (id) => {
+    document.getElementById(id).remove()
+}
+listaProductos.addEventListener('click', (e) => {
+    if(e.target.classList.contains('borrar') || e.target.parentElement.classList.contains('borrar')){
+        const productoId = e.target.closest('li').id
+        eliminarProducto(productoId)
+    }
+})
