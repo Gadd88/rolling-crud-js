@@ -21,8 +21,8 @@
     </header>
     <main>
         <section class="form-productos m-5">
-            <form id="form-add-producto" class="d-flex flex-column col-8 form-group m-auto">
-                <div class="d-flex gap-3">
+            <form id="form-add-producto" class="d-flex flex-column col-12 col-md-8 form-group m-auto">
+                <div class="d-flex gap-3 flex-column flex-md-row">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Producto</span>
                         <input type="text" id="inputProducto" autofocus class="form-control">
@@ -36,7 +36,7 @@
                     <span class="input-group-text">Descripcion</span>
                     <input type="text" id="inputDescripcion" class="form-control">
                 </div>
-                <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center gap-3 mb-3 flex-column flex-md-row">
                     <div class="input-group">
                         <span class="input-group-text">Precio</span>
                         <input type="number" id="inputPrecio" class="form-control">
@@ -54,7 +54,7 @@
         </section>
         <section class="m-5">
             <h2>Lista de Productos</h2>
-            <ul id="lista-productos" class="d-flex align-items-center flex-wrap col-12 gap-2">
+            <ul id="lista-productos" class="d-flex align-items-center flex-nowrap col-12 gap-2 overflow-x-auto">
                 <!-- <li>
                     <picture>
                         <figure>
@@ -81,14 +81,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" id="modal-body">
-                            <form id="form-edicion">
+                            <form id="form-edicion" class="d-flex flex-column align-items-start gap-1">
 
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" id="btn-guardar" data-bs-dismiss="modal">Guardar Edicion</button>
-                            <!-- <button type="button" class="btn btn-primary" id="btn-guardar-modificacion">Guardar cambios</button> -->
+                            <button type="submit" class="btn btn-primary" id="btn-guardar" data-bs-dismiss="modal">Guardar Edicion</button>
                         </div>
                     </div>
                 </div>

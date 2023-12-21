@@ -41,7 +41,7 @@ const mostrarProductos = () => {
         const {id, categoria, nombre, descripcion, stock, precio} = producto
 
         listaProductos.innerHTML += `
-        <li class="list-group-item d-flex justify-content-between align-items-start col-4" id=${id}>        
+        <li class="list-group-item d-flex justify-content-between align-items-start col-12 col-md-4" id=${id}>        
             <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
                 <div class="card">
                     <div class="d-flex justify-content-between p-3">
@@ -126,16 +126,26 @@ const mostrarFormularioModificar = (id) => {
     //form para modificacion:
     const formEdicion = document.getElementById('form-edicion');
     formEdicion.innerHTML = `
-        <label for="new-producto">Producto:</label>
-        <input type="text" id="new-producto" value="${producto.nombre}">
-        <label for="new-categoria">Categoria:</label>
-        <input type="text" id="new-categoria" value="${producto.categoria}">
-        <label for="new-descripcion">Descripcion:</label>
-        <input type="text" id="new-descripcion" value="${producto.descripcion}">
-        <label for="new-precio">Precio:</label>
-        <input type="number" id="new-precio" value="${producto.precio}">
-        <label for="new-stock">Stock:</label>
-        <input type="number" id="new-stock" value="${producto.stock}">
+        <div class="d-flex align-items-start gap-2 col-12 justify-content-between">
+            <span class="input-group-text col-3" for="new-producto">Producto:</span>
+            <input class="form-control" type="text" id="new-producto" value="${producto.nombre}">
+        </div>
+        <div class="d-flex align-items-start gap-2 col-12 justify-content-between">
+            <span class="input-group-text col-3" for="new-categoria">Categoria:</span>
+            <input class="form-control" type="text" id="new-categoria" value="${producto.categoria}">
+        </div>
+        <div class="d-flex align-items-start gap-2 col-12 justify-content-between">
+            <span class="input-group-text col-3" for="new-descripcion">Descripcion:</span>
+            <input class="form-control" type="text" id="new-descripcion" value="${producto.descripcion}">
+        </div>
+        <div class="d-flex align-items-start gap-2 col-12 justify-content-between">
+            <span class="input-group-text col-3" for="new-precio">Precio:</span>
+            <input class="form-control" type="number" id="new-precio" value="${producto.precio}">
+        </div>
+        <div class="d-flex align-items-start gap-2 col-12 justify-content-between">
+            <span class="input-group-text col-3" for="new-stock">Stock:</span>
+            <input class="form-control" type="number" id="new-stock" value="${producto.stock}">
+        </div>
     `;
     modalTitle.textContent = `${producto.nombre}`
 
