@@ -2,11 +2,17 @@
 const nombreProducto = document.getElementById('inputProducto')
 const categoriaProducto = document.getElementById('inputCategoria')
 const descripcionProducto = document.getElementById('inputDescripcion')
+const direccionImg = document.getElementById('inputImg')
 const precioProducto = document.getElementById('inputPrecio')
 const stockProducto = document.getElementById('inputStock')
 const btnAgregarProducto = document.getElementById('btn-agregar')
 const listaProductos = document.getElementById('lista-productos')
 let productos = []
+
+//agregar a localStorage
+const agregarStorage = (productos) => {
+    localStorage.setItem('productos', JSON.stringify(productos))
+}
 
 //Agregar Producto
 const agregarProducto = () => {
@@ -15,6 +21,7 @@ const agregarProducto = () => {
         nombre: nombreProducto.value,
         categoria: categoriaProducto.value,
         descripcion: descripcionProducto.value,
+        imagen: direccionImg.value,
         precio: precioProducto.value,
         stock: stockProducto.value,
     }
@@ -22,6 +29,7 @@ const agregarProducto = () => {
     nombreProducto.value = ''
     categoriaProducto.value = ''
     descripcionProducto.value = ''
+    direccionImg.value = ''
     precioProducto.value = ''
     stockProducto.value = ''
 }
@@ -29,6 +37,7 @@ btnAgregarProducto.addEventListener('click', (e) => {
     e.preventDefault()
     agregarProducto()
     mostrarProductos()
+    agregarStorage(productos) //cada vez que agregamos un producto, se agregar el array nuevo al localStorage
 })
 
 //Mostrar productos
@@ -38,7 +47,7 @@ const mostrarProductos = () => {
     listaProductos.innerHTML = ''
     productos.forEach((producto) => {
 
-        const {id, categoria, nombre, descripcion, stock, precio} = producto
+        const {id, categoria, nombre, descripcion, imagen, stock, precio} = producto
 
         listaProductos.innerHTML += `
         <li class="list-group-item d-flex justify-content-between align-items-start col-12 col-md-4" id=${id}>        
@@ -46,11 +55,11 @@ const mostrarProductos = () => {
                 <div class="card">
                     <div class="d-flex justify-content-between p-3">
                         <p class="lead mb-0">New!!!</p>
-                        <div class="bg-danger rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style="width: 35px; height: 35px;">
+                        <div class="bg-danger rounded-circle d-flex align-items-center borrar justify-content-center shadow-1-strong" style="width: 35px; height: 35px;">
                             <p class="text-white mb-0 small borrar pointer" id="btn-eliminar" role="button">X</p>
                         </div>
                     </div>
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/4.webp" class="card-img-top" alt="Laptop" />
+                    <img src=${imagen} class="card-img-top" alt="Laptop" />
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <p class="small">
@@ -104,7 +113,11 @@ const eliminarProducto = (id) => {
 listaProductos.addEventListener('click', (e) => {
     if(e.target.classList.contains('borrar') || e.target.parentElement.classList.contains('borrar')){
         const productoId = e.target.closest('li').id
-        eliminarProducto(productoId)
+        eliminarProducto(productoId) //se elimina el item del DOM - MUCHO MUY IMPORTANTE!!! no del array productos
+        let newProductos = productos.filter(producto => producto.id != productoId) // creamos un nuevo array sin el producto eliminado
+        productos = newProductos //reemplaza todos los items del array productos por los del nuevo array filtrado
+        mostrarProductos()
+        agregarStorage(productos)
     }
 })
 
