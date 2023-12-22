@@ -18,6 +18,7 @@ const agregarProducto = () => {
         precio: precioProducto.value,
         stock: stockProducto.value,
     }
+    //agregamos el producto al array de productos y limpiamos los valores del formulario
     productos.push(producto)
     nombreProducto.value = ''
     categoriaProducto.value = ''
