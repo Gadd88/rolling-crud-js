@@ -107,14 +107,14 @@ const mostrarProductos = () => {
     
 
 //Eliminar Producto
-const eliminarProducto = (id) => {
-    document.getElementById(id).remove()
-}
+// const eliminarProducto = (id) => {
+//     document.getElementById(id).remove()
+// }
 //Boton "Eliminar"
 listaProductos.addEventListener('click', (e) => {
     if(e.target.classList.contains('borrar') || e.target.parentElement.classList.contains('borrar')){
         const productoId = e.target.closest('li').id
-        eliminarProducto(productoId) //se elimina el item del DOM - MUCHO MUY IMPORTANTE!!! no del array productos
+        // eliminarProducto(productoId) //se elimina el item del DOM - MUCHO MUY IMPORTANTE!!! no del array productos, podemos eliminarlo, ya que al filtrar el array y re renderizar la lista de productos, ya no se encuentra el item eliminado.
         let newProductos = productos.filter(producto => producto.id != productoId) // creamos un nuevo array sin el producto eliminado
         productos = newProductos //reemplaza todos los items del array productos por los del nuevo array filtrado
         mostrarProductos()
